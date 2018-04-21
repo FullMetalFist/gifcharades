@@ -17,7 +17,7 @@ class GifController: UIViewController {
     @IBAction func fetchGif(_ sender: Any) {
         let g = Giphy(apiKey: Giphy.PublicBetaAPIKey)
         
-        g.random("dogs", rating: nil) { gif, err in
+        let task = g.random("dogs", rating: nil) { gif, err in
             
             if err != nil {
                 print("Error fetching gif")
@@ -34,5 +34,7 @@ class GifController: UIViewController {
             }
             
         }
+        
+        task.resume()
     }
 }
